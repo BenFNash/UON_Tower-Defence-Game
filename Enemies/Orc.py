@@ -11,12 +11,8 @@ for i in range(10):
     else:
         add_str = '0' + str(i)
     orc_animation_imgs.append(pygame.transform.scale(pygame.image.load(
-        os.path.join('game_assets', 'Orc', 'PNG', 'PNG Sequences',
+        os.path.join('game_assets', 'Orc',
                      'Running', '0_Orc_Running_' + add_str + '.png')), (64, 64)))
-
-    orc_attack_imgs.append(pygame.transform.scale(pygame.image.load(
-        os.path.join('game_assets', 'Orc', 'PNG', 'PNG Sequences',
-                     'Slashing', '0_Orc_Slashing_' + add_str + '.png')), (64, 64)))
 
 
 class Orc(Enemy):

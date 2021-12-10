@@ -6,6 +6,7 @@ import Enemies.Ogre as Ogre
 import Enemies.Orc as Orc
 import Player
 import random
+import Gui
 
 
 class Game():
@@ -22,7 +23,7 @@ class Game():
             os.path.join('game_assets', 'map_final.png'))
         self.enemys = []
         self.castle_img = pygame.transform.scale(pygame.image.load(os.path.join(
-            'game_assets', 'Castle', 'png', 'Asset 27.png')), (400, 400))
+            'game_assets', 'Castle', 'Asset 27.png')), (400, 400))
         self.difficulty_selected = 'easy'
         self.font = pygame.font.SysFont('arial', 50)
         self.player = Player.Player(self.difficulty_selected)
@@ -30,6 +31,7 @@ class Game():
         self.wave_number = 0
         self.game_over = False
         self.paused = False
+        self.currency = 0
 
     def play(self):
         playing = True
@@ -41,11 +43,13 @@ class Game():
                 if event.type == pygame.QUIT:
                     playing = False
 
-                position = pygame.mouse.get_pos()
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE or event.key == pygame.K_p:
-                        self.paused = not self.paused
+                pos_x, pos_y = pygame.mouse.get_pos()
 
+                if event.type == pygame.MOUSEBUTTONUP:
+                    if Gui.pause_play_action(pos_x, pos_y):
+                        self.paused = not self.paused
+                    Gui.exit_action(pos_x, pos_y)
+                    Gui.audio_button_action(pos_x, pos_y)
             if not self.game_over:
                 if not self.paused:
 
@@ -61,8 +65,13 @@ class Game():
                             self.player.lives -= 1
                             if self.player.lives < 1:
                                 self.game_over = True
+
+                    Gui.archer_tower.action(pos_x, pos_y)
+                    Gui.wizard_tower.action(pos_x, pos_y)
                 else:
                     self.pause_menu()
+                    Gui.draw_interface(self.window, self.player.lives,
+                                       self.wave_number, self.currency)
             else:
                 self.draw()
             pygame.display.update()
@@ -77,7 +86,7 @@ class Game():
         self.window.blit(lives_surface, (700, 160))
         if self.player.lives < 9:
             self.castle_img = pygame.transform.scale(pygame.image.load(os.path.join(
-                'game_assets', 'Castle', 'png', 'Asset 28.png')), (400, 400))
+                'game_assets', 'Castle', 'Asset 28.png')), (400, 400))
 
         if self.game_over:
             self.game_over_surface = self.font.render(
@@ -85,7 +94,10 @@ class Game():
             self.window.blit(self.game_over_surface,
                              (self.width / 2 - 300, self.height / 2))
             self.castle_img = pygame.transform.scale(pygame.image.load(os.path.join(
-                'game_assets', 'Castle', 'png', 'Asset 29.png')), (400, 400))
+                'game_assets', 'Castle',  'Asset 29.png')), (400, 400))
+
+        Gui.draw_interface(self.window, self.player.lives,
+                           self.wave_number, self.currency)
 
     def new_wave(self):
         self.enemy_count = 0

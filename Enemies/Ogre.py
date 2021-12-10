@@ -11,12 +11,8 @@ for i in range(23):
     else:
         add_str = '0' + str(i)
     ogre_animation_imgs.append(pygame.transform.scale(pygame.image.load(
-        os.path.join('game_assets', 'Ogre', 'PNG', 'PNG Sequences',
+        os.path.join('game_assets', 'Ogre',
                      'Walking', '0_Ogre_Walking_' + add_str + '.png')), (80, 80)))
-
-    # ogre_attack_imgs.append(pygame.transform.scale(pygame.image.load(
-    #   os.path.join('game_assets', 'Ogre', 'PNG', 'PNG Sequences',
-    #               'Slashing', '0_Ogre_Slashing_' + add_str + '.png')), (80, 80)))
 
 
 class Ogre(Enemy):

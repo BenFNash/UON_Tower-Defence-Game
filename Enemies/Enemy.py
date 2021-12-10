@@ -9,9 +9,9 @@ class Enemy:
         self.x = -40
         self.y = 115
         self.imgs = pygame.transform.scale(pygame.image.load(os.path.join(
-            'game_assets', 'Goblin', 'PNG', 'PNG Sequences', 'Running', '0_Goblin_Running_000.png')), (64, 64))
+            'game_assets', 'Goblin', 'Running', '0_Goblin_Running_000.png')), (64, 64))
         self.attack_imgs = pygame.transform.scale(pygame.image.load(os.path.join(
-            'game_assets', 'Goblin', 'PNG', 'PNG Sequences', 'Running', '0_Goblin_Running_000.png')), (64, 64))
+            'game_assets', 'Goblin', 'Running', '0_Goblin_Running_000.png')), (64, 64))
         self.animation_count = 0
         self.path_count = 0
         self.path = [[0, 115], [123, 115], [123, 458], [268, 458], [268, 288], [369, 288], [369, 185],
