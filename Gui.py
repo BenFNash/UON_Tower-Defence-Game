@@ -3,7 +3,7 @@ import pygame
 
 """ Set constants """
 black = (0, 0, 0)
-music_on = False
+music_on = True
 Pause = False
 """ Load in image resources """
 guiPanel = pygame.image.load(os.path.join('game_assets', 'GUI', 'panel.png'))
@@ -149,7 +149,7 @@ def exit_action(pos_x, pos_y):
 
 """ Create instances of different tower buttons """
 archer_tower = Tower_Button(60, 600, guiTowerArcher, 300)
-wizard_tower = Tower_Button(160, 600, guiTowerWizard, 500)
+wizard_tower = Tower_Button(160, 600, guiTowerWizard, 400)
 
 
 """ One simple function to pass to the main game file """
