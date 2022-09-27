@@ -6,3 +6,7 @@ TODO:
 3. Document code so easy to understand
 4. make any changes necessary
 
+DONE:
+1. get familiar with git
+2. project completed
+
